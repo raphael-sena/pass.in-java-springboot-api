@@ -25,5 +25,4 @@
   <li>Participants can only check-in to an event once;</li>
 </ul>
 
-![erd](https://github.com/raphael-sena/pass-in/assets/78915270/e48bdcec-09f8-47e0-8996-8868c16dc04f)
-
+![erd](https://github.com/raphael-sena/pass.in-java-springboot-api/assets/78915270/cafcb18f-19b8-493b-9e89-d3bcaa4a346a)
