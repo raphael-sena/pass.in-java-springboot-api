@@ -41,15 +41,13 @@ public class EventService {
         return new EventIdDTO(newEvent.getId());
     }
 
-    public AttendeeIdDTO registerAttendeeOnEvent(String eventId, AttendeeRequestDTO attendeeRequestDTO) {
-        //verificar se não está inscrito
+    public AttendeeIdDTO registerAttendeeOnEvent(String eventId, AttendeeRequestDTO attendeeRequestDTO){
         this.attendeeService.verifyAttendeeSubscription(attendeeRequestDTO.email(), eventId);
 
         Event event = this.getEventById(eventId);
-        List<Attendee> attendeesList = this.attendeeService.getAllAttendeesFromEvent(eventId);
+        List<Attendee> attendeeList = this.attendeeService.getAllAttendeesFromEvent(eventId);
 
-        //mais correto lançar uma exceção
-        if(event.getMaximumAttendees() <= attendeesList.size()) throw new EventFullException("Event is full");
+        if(event.getMaximumAttendees() <= attendeeList.size()) throw new EventFullException("Event is full");
 
         Attendee newAttendee = new Attendee();
         newAttendee.setName(attendeeRequestDTO.name());
@@ -59,6 +57,7 @@ public class EventService {
         this.attendeeService.registerAttendee(newAttendee);
 
         return new AttendeeIdDTO(newAttendee.getId());
+
     }
 
     private Event getEventById(String eventId){
